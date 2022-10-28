@@ -14,6 +14,8 @@ export interface ModalProps {
   isShown: boolean;
   hide: () => void;
   modalContent: JSX.Element;
+  toggleBlackAndWhite: () => void;
+  isGrey: boolean;
 }
 
 export const Modal: FunctionComponent<ModalProps> = ({

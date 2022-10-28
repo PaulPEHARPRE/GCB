@@ -1,14 +1,13 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Wrapper = styled.div`
   position: fixed;
-  top: 10%;
-  left: 80%;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
   z-index: 700;
   width: inherit;
 `;
-
 
 export const StyledModal = styled.div`
   z-index: 100;
@@ -23,6 +22,8 @@ export const Header = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 0.3rem;
+  border-bottom: 1px solid;
+  padding: 1Opx;
 `;
 
 export const HeaderText = styled.div`

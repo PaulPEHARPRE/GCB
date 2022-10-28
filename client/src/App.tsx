@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import background from "./assets/fondEcran.png";
 import { Button } from "./button";
 import { ButtonBG } from "./buttonBG";
@@ -19,20 +19,40 @@ function App() {
   const [byteExchange, setByteExchange] = useState(0);
   const [MBytes, setMBytes] = useState(0);
   const { isShowing, toggle } = useModal();
-  const { isGrey } = useColor();
+  const { isGrey, toggleBlackAndWhite } = useColor();
+  const date = useMemo(() => new Date(),[]);
+
+  const [deltaTime, setDeltaTimee] = useState(
+    new Date().getDate() - date.getDate()
+  );
+  useEffect(() => {
+    const functiontelr = setInterval(() => {
+      setDeltaTimee(Math.floor((new Date().getTime() - date.getTime()) / 1000));
+    }, 1000);
+    return () => clearInterval(functiontelr);
+  }, [date, deltaTime]);
 
   return (
     <div>
       <Modal
         isShown={isShowing}
         hide={toggle}
-        modalContent={<ConfirmationModal />}
+        modalContent={
+          <ConfirmationModal
+            isGrey={isGrey}
+            deltaTime={deltaTime}
+            toggleBlackAndWhite={toggleBlackAndWhite}
+            byteExchange={byteExchange}
+          />
+        }
+        isGrey={isGrey}
+        toggleBlackAndWhite={toggleBlackAndWhite}
       />
       <div
         style={{
           backgroundImage: `url(${background})`,
           backgroundRepeat: "no-repeat",
-          filter: `${isGrey ? "grayscale(100%)" : "grayscale(100%)"}`,
+          filter: `${isGrey ? "grayscale(100%)" : ""}`,
           height: vh,
           display: "flex",
         }}

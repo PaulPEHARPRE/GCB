@@ -1,5 +1,6 @@
 .container {
   text-align: center;
+  padding: 15px;
 }
 .toggle-switch {
   position: relative;
